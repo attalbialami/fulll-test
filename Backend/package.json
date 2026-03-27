@@ -1,0 +1,17 @@
+{
+  "name": "vehicle-fleet-parking",
+  "version": "1.0.0",
+  "description": "Vehicle Fleet Parking Management — DDD/CQRS in TypeScript",
+  "license": "proprietary",
+  "author": "Badr Eddine ATTALBI ALAMI",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.9.0",
+    "@types/node": "^22.13.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "test": "cucumber-js --profile default",
+    "test:critical": "cucumber-js --profile critical"
+  }
+}
