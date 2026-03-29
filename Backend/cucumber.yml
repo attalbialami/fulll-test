@@ -34,4 +34,3 @@ infra:
     - features/park-vehicle-infra.feature
   format:
     - progress-bar
-

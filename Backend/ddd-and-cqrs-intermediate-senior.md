@@ -96,7 +96,6 @@ Feature: Park a vehicle
 
 Note : We use DDD and suggest its use but all modern architectures (Clean architecture, Hexagonal architecture, Port and Adapters, ...) are acceptable
 
-
 #### Tips
 
 - Try to first write bdd/gherkin tests, then implement the code.
@@ -135,7 +134,6 @@ Please wrap the part 1 into a complete application. We want:
 
 - For code quality, you can use some tools : which one and why (in a few words) ?
 - you can consider to setup a ci/cd process : describe the necessary actions in a few words
-
 
 #### Evaluation
 

@@ -7,4 +7,3 @@ export class ParkVehicleCommand {
     readonly location: Location,
   ) {}
 }
-

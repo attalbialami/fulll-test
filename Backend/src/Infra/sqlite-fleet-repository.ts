@@ -12,7 +12,9 @@ export class SqliteFleetRepository implements FleetRepository {
 
     for (const plateNumber of fleet.getVehiclePlateNumbers()) {
       this.db
-        .prepare("INSERT OR IGNORE INTO fleet_vehicles (fleet_id, vehicle_plate_number) VALUES (?, ?)")
+        .prepare(
+          "INSERT OR IGNORE INTO fleet_vehicles (fleet_id, vehicle_plate_number) VALUES (?, ?)",
+        )
         .run(fleet.fleetId, plateNumber);
     }
   }
@@ -39,4 +41,3 @@ export class SqliteFleetRepository implements FleetRepository {
     return fleet;
   }
 }
-

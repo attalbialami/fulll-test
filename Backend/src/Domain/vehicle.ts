@@ -19,4 +19,3 @@ export class Vehicle {
     this._location = location;
   }
 }
-

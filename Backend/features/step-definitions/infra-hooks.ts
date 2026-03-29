@@ -23,4 +23,3 @@ After({ tags: "@infra" }, function (this: InfraWorld) {
     this.db.close();
   }
 });
-

@@ -22,9 +22,16 @@ export class SqliteVehicleRepository implements VehicleRepository {
 
   findByPlateNumber(plateNumber: string): Vehicle {
     const row = this.db
-      .prepare("SELECT plate_number, latitude, longitude, altitude FROM vehicles WHERE plate_number = ?")
+      .prepare(
+        "SELECT plate_number, latitude, longitude, altitude FROM vehicles WHERE plate_number = ?",
+      )
       .get(plateNumber) as
-      | { plate_number: string; latitude: number | null; longitude: number | null; altitude: number | null }
+      | {
+          plate_number: string;
+          latitude: number | null;
+          longitude: number | null;
+          altitude: number | null;
+        }
       | undefined;
 
     if (!row) {
@@ -41,4 +48,3 @@ export class SqliteVehicleRepository implements VehicleRepository {
     return vehicle;
   }
 }
-

@@ -4,4 +4,3 @@ export class RegisterVehicleCommand {
     readonly vehiclePlateNumber: string,
   ) {}
 }
-

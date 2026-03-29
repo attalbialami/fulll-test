@@ -13,4 +13,3 @@ Before(function (this: World) {
   this.vehicleRepository = new InMemoryVehicleRepository();
   this.error = null;
 });
-

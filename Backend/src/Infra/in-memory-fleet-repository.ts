@@ -16,4 +16,3 @@ export class InMemoryFleetRepository implements FleetRepository {
     return fleet;
   }
 }
-

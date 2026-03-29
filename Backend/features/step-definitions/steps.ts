@@ -20,7 +20,6 @@ interface TestWorld {
   error: Error | null;
 }
 
-
 // --- Register vehicle steps ---
 
 Given("my fleet", function (this: TestWorld) {
@@ -67,10 +66,13 @@ Then("this vehicle should be part of my vehicle fleet", function (this: TestWorl
   assert.ok(fleet.hasVehicle(this.vehicle));
 });
 
-Then("I should be informed this this vehicle has already been registered into my fleet", function (this: TestWorld) {
-  assert.ok(this.error);
-  assert.ok(this.error!.message.includes("already been registered"));
-});
+Then(
+  "I should be informed this this vehicle has already been registered into my fleet",
+  function (this: TestWorld) {
+    assert.ok(this.error, "Expected an error to be thrown");
+    assert.ok(this.error.message.includes("already been registered"));
+  },
+);
 
 // --- Park vehicle steps ---
 
@@ -80,18 +82,24 @@ Given("a location", function (this: TestWorld) {
 
 Given("my vehicle has been parked into this location", function (this: TestWorld) {
   const handler = new ParkVehicleCommandHandler(this.fleetRepository, this.vehicleRepository);
-  handler.handle(new ParkVehicleCommand(this.fleet.fleetId, this.vehicle.plateNumber, this.location));
+  handler.handle(
+    new ParkVehicleCommand(this.fleet.fleetId, this.vehicle.plateNumber, this.location),
+  );
 });
 
 When("I park my vehicle at this location", function (this: TestWorld) {
   const handler = new ParkVehicleCommandHandler(this.fleetRepository, this.vehicleRepository);
-  handler.handle(new ParkVehicleCommand(this.fleet.fleetId, this.vehicle.plateNumber, this.location));
+  handler.handle(
+    new ParkVehicleCommand(this.fleet.fleetId, this.vehicle.plateNumber, this.location),
+  );
 });
 
 When("I try to park my vehicle at this location", function (this: TestWorld) {
   try {
     const handler = new ParkVehicleCommandHandler(this.fleetRepository, this.vehicleRepository);
-    handler.handle(new ParkVehicleCommand(this.fleet.fleetId, this.vehicle.plateNumber, this.location));
+    handler.handle(
+      new ParkVehicleCommand(this.fleet.fleetId, this.vehicle.plateNumber, this.location),
+    );
   } catch (e) {
     this.error = e as Error;
   }
@@ -100,11 +108,13 @@ When("I try to park my vehicle at this location", function (this: TestWorld) {
 Then("the known location of my vehicle should verify this location", function (this: TestWorld) {
   const vehicle = this.vehicleRepository.findByPlateNumber(this.vehicle.plateNumber);
   assert.ok(vehicle.location, "Vehicle should have a location");
-  assert.ok(vehicle.location!.equals(this.location), "Location should match");
+  assert.ok(vehicle.location.equals(this.location), "Location should match");
 });
 
-Then("I should be informed that my vehicle is already parked at this location", function (this: TestWorld) {
-  assert.ok(this.error);
-  assert.ok(this.error!.message.includes("already parked"));
-});
-
+Then(
+  "I should be informed that my vehicle is already parked at this location",
+  function (this: TestWorld) {
+    assert.ok(this.error, "Expected an error to be thrown");
+    assert.ok(this.error.message.includes("already parked"));
+  },
+);

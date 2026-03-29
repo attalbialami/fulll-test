@@ -4,4 +4,3 @@ export interface VehicleRepository {
   save(vehicle: Vehicle): void;
   findByPlateNumber(plateNumber: string): Vehicle;
 }
-

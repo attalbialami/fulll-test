@@ -21,4 +21,3 @@ export class ParkVehicleCommandHandler {
     this.vehicleRepository.save(vehicle);
   }
 }
-

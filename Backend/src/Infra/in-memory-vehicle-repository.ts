@@ -16,4 +16,3 @@ export class InMemoryVehicleRepository implements VehicleRepository {
     return vehicle;
   }
 }
-

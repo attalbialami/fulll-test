@@ -25,4 +25,3 @@ export class RegisterVehicleCommandHandler {
     this.fleetRepository.save(fleet);
   }
 }
-

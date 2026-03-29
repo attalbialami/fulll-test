@@ -31,4 +31,3 @@ export function createDatabase(dbPath: string = DEFAULT_DB_PATH): Database.Datab
 
   return db;
 }
-

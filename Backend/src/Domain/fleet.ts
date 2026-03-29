@@ -33,4 +33,3 @@ export class Fleet {
     this.vehicles.add(plateNumber);
   }
 }
-

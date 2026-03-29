@@ -61,7 +61,11 @@ function handleCreate(args: string[], fleetRepository: SqliteFleetRepository): v
   console.log(fleetId);
 }
 
-function handleRegisterVehicle(args: string[], fleetRepository: SqliteFleetRepository,vehicleRepository: SqliteVehicleRepository): void {
+function handleRegisterVehicle(
+  args: string[],
+  fleetRepository: SqliteFleetRepository,
+  vehicleRepository: SqliteVehicleRepository,
+): void {
   const [fleetId, plateNumber] = args;
   if (!fleetId || !plateNumber) {
     console.error("Usage: fleet register-vehicle <fleetId> <vehiclePlateNumber>");
@@ -72,7 +76,11 @@ function handleRegisterVehicle(args: string[], fleetRepository: SqliteFleetRepos
   handler.handle(new RegisterVehicleCommand(fleetId, plateNumber));
 }
 
-function handleLocalizeVehicle(args: string[], fleetRepository: SqliteFleetRepository, vehicleRepository: SqliteVehicleRepository): void {
+function handleLocalizeVehicle(
+  args: string[],
+  fleetRepository: SqliteFleetRepository,
+  vehicleRepository: SqliteVehicleRepository,
+): void {
   const [fleetId, plateNumber, latStr, lngStr, altStr] = args;
   const lat = parseFloat(latStr);
   const lng = parseFloat(lngStr);
@@ -89,4 +97,3 @@ function handleLocalizeVehicle(args: string[], fleetRepository: SqliteFleetRepos
 }
 
 main();
-
