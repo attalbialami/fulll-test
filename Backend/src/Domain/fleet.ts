@@ -20,5 +20,17 @@ export class Fleet {
   hasVehicle(vehicle: Vehicle): boolean {
     return this.vehicles.has(vehicle.plateNumber);
   }
+
+  hasVehicleByPlateNumber(plateNumber: string): boolean {
+    return this.vehicles.has(plateNumber);
+  }
+
+  getVehiclePlateNumbers(): ReadonlySet<string> {
+    return this.vehicles;
+  }
+
+  restoreVehicle(plateNumber: string): void {
+    this.vehicles.add(plateNumber);
+  }
 }
 
