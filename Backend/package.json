@@ -1,0 +1,48 @@
+{
+  "name": "vehicle-fleet-parking",
+  "version": "1.0.0",
+  "description": "Vehicle Fleet Parking Management — DDD/CQRS in TypeScript",
+  "license": "proprietary",
+  "author": "Badr Eddine ATTALBI ALAMI",
+  "scripts": {
+    "test": "cucumber-js --profile default",
+    "test:critical": "cucumber-js --profile critical",
+    "test:infra": "cucumber-js --profile infra",
+    "test:coverage": "c8 --reporter=text --reporter=lcov cucumber-js --profile default",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "ci": "npm run typecheck && npm run lint && npm run format:check && npm test",
+    "prepare": "cd .. && husky",
+    "fleet": "ts-node src/Infra/cli.ts"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,yml,md}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.8.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.9.0",
+    "@eslint/js": "^9.39.4",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.13.14",
+    "c8": "^11.0.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.57.2"
+  }
+}

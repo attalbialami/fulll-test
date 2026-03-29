@@ -1,0 +1,36 @@
+default:
+  requireModule:
+    - ts-node/register
+  require:
+    - features/step-definitions/in-memory-hooks.ts
+    - features/step-definitions/steps.ts
+  paths:
+    - features/register-vehicle.feature
+    - features/park-vehicle.feature
+  format:
+    - progress-bar
+
+critical:
+  requireModule:
+    - ts-node/register
+  require:
+    - features/step-definitions/in-memory-hooks.ts
+    - features/step-definitions/steps.ts
+  paths:
+    - features/register-vehicle.feature
+    - features/park-vehicle.feature
+  format:
+    - progress-bar
+  tags: "@critical"
+
+infra:
+  requireModule:
+    - ts-node/register
+  require:
+    - features/step-definitions/infra-hooks.ts
+    - features/step-definitions/steps.ts
+  paths:
+    - features/register-vehicle-infra.feature
+    - features/park-vehicle-infra.feature
+  format:
+    - progress-bar

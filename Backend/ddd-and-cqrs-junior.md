@@ -138,7 +138,6 @@ Please wrap the part 1 into a complete application. We want:
 - For code quality, you can use some tools : which one and why (in a few words) ?
 - you can consider to setup a ci/cd process : describe the necessary actions in a few words
 
-
 #### Evaluation
 
 - Quality of the code.
