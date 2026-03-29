@@ -1,5 +1,5 @@
-import { FleetRepository } from "../Domain/fleet-repository";
-import { VehicleRepository } from "../Domain/vehicle-repository";
+import { FleetRepository } from "../../Domain/fleet-repository";
+import { VehicleRepository } from "../../Domain/vehicle-repository";
 import { ParkVehicleCommand } from "./park-vehicle-command";
 
 export class ParkVehicleCommandHandler {

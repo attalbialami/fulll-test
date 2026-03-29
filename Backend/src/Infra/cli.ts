@@ -1,12 +1,12 @@
 import { createDatabase } from "./sqlite-database";
 import { SqliteFleetRepository } from "./sqlite-fleet-repository";
 import { SqliteVehicleRepository } from "./sqlite-vehicle-repository";
-import { CreateFleetCommand } from "../App/create-fleet-command";
-import { CreateFleetCommandHandler } from "../App/create-fleet-command-handler";
-import { RegisterVehicleCommand } from "../App/register-vehicle-command";
-import { RegisterVehicleCommandHandler } from "../App/register-vehicle-command-handler";
-import { ParkVehicleCommand } from "../App/park-vehicle-command";
-import { ParkVehicleCommandHandler } from "../App/park-vehicle-command-handler";
+import { CreateFleetCommand } from "../App/Commands/create-fleet-command";
+import { CreateFleetCommandHandler } from "../App/Commands/create-fleet-command-handler";
+import { RegisterVehicleCommand } from "../App/Commands/register-vehicle-command";
+import { RegisterVehicleCommandHandler } from "../App/Commands/register-vehicle-command-handler";
+import { ParkVehicleCommand } from "../App/Commands/park-vehicle-command";
+import { ParkVehicleCommandHandler } from "../App/Commands/park-vehicle-command-handler";
 import { Location } from "../Domain/location";
 
 const USAGE = `Usage:
