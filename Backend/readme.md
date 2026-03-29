@@ -82,7 +82,7 @@ features/
 
 ### CI/CD Pipeline
 
-GitHub Actions (`.github/workflows/backend-ci.yml`) — triggered on push/PR to `main`, scoped to `Backend/**`:
+GitHub Actions (`.github/workflows/backend-ci.yml`) — triggered on push/PR to `master`, scoped to `Backend/**`:
 
 | Job          | What it does                                        |
 | ------------ | --------------------------------------------------- |

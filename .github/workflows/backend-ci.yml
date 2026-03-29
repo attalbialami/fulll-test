@@ -2,12 +2,12 @@ name: Backend CI
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - "Backend/**"
       - ".github/**"
   pull_request:
-    branches: [main]
+    branches: [master]
     paths:
       - "Backend/**"
       - ".github/**"
