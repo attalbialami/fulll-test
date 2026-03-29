@@ -1,6 +1,7 @@
 name: Backend CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     paths:
@@ -58,8 +59,13 @@ jobs:
       - name: In-memory tests with coverage
         run: npm run test:coverage
 
-      - name: Infrastructure tests (SQLite)
-        run: npm run test:infra
+      - name: Coverage summary
+        if: success()
+        run: |
+          echo "## 📊 Test Coverage" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          npx c8 report --reporter=text | tail -n 5 >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
       - name: Upload coverage report
         if: always()
@@ -67,6 +73,9 @@ jobs:
         with:
           name: coverage-report
           path: Backend/coverage/
+
+      - name: Infrastructure tests (SQLite)
+        run: npm run test:infra
 
   security:
     name: Security Audit
