@@ -1,6 +1,6 @@
-import { FleetRepository } from "../Domain/fleet-repository";
-import { VehicleRepository } from "../Domain/vehicle-repository";
-import { Vehicle } from "../Domain/vehicle";
+import { FleetRepository } from "../../Domain/fleet-repository";
+import { VehicleRepository } from "../../Domain/vehicle-repository";
+import { Vehicle } from "../../Domain/vehicle";
 import { RegisterVehicleCommand } from "./register-vehicle-command";
 
 export class RegisterVehicleCommandHandler {

@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
-import { Fleet } from "../Domain/fleet";
-import { FleetRepository } from "../Domain/fleet-repository";
+import { Fleet } from "../../Domain/fleet";
+import { FleetRepository } from "../../Domain/fleet-repository";
 import { CreateFleetCommand } from "./create-fleet-command";
 
 export class CreateFleetCommandHandler {

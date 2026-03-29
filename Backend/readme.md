@@ -49,19 +49,28 @@ npm run ci                     # Full CI check: typecheck → lint → format �
 
 ```
 src/
-  App/       # Commands (DTOs) + Handlers (orchestration — CQRS)
-  Domain/    # Entities, Value Objects, Repository interfaces (pure DDD, zero deps)
-  Infra/     # Concrete implementations (in-memory, SQLite, CLI)
+  App/
+    Commands/  # Write side — Create fleet, Register vehicle, Park vehicle
+    Queries/   # Read side — Get fleet, Get vehicle location
+  Domain/      # Entities, Value Objects, Repository interfaces (pure DDD, zero deps)
+  Infra/       # Concrete implementations (in-memory, SQLite, CLI)
 features/
   *.feature              # Gherkin scenarios (BDD)
   step-definitions/      # Cucumber.js step definitions & hooks
 ```
 
+### CQRS Separation
+
+| Side      | Folder          | Responsibility                               | Used in                   |
+| --------- | --------------- | -------------------------------------------- | ------------------------- |
+| **Write** | `App/Commands/` | Create fleet, Register vehicle, Park vehicle | CLI, `Given`/`When` steps |
+| **Read**  | `App/Queries/`  | Get fleet by ID, Get vehicle location        | `Then` steps (assertions) |
+
 ### Key Design Decisions
 
 | Decision                                 | Rationale                                                                                                             |
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **DDD + CQRS**                           | Separates domain logic from infrastructure; commands are explicit DTOs — easy to test, extend, or swap persistence    |
+| **DDD + CQRS**                           | Explicit separation of write (Commands) and read (Queries) — each in its own folder under `App/`                      |
 | **No framework** (no Express, no NestJS) | Assignment requirement + demonstrates raw Node.js proficiency                                                         |
 | **SQLite** (better-sqlite3)              | Zero-config, portable — avoids Docker/PostgreSQL setup for reviewers. Repository pattern makes it trivially swappable |
 | **In-memory first, SQL second**          | Domain tests run in milliseconds; SQLite tests validate persistence separately via Cucumber profiles                  |

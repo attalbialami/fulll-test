@@ -5,10 +5,14 @@ import { Vehicle } from "../../src/Domain/vehicle";
 import { Location } from "../../src/Domain/location";
 import { FleetRepository } from "../../src/Domain/fleet-repository";
 import { VehicleRepository } from "../../src/Domain/vehicle-repository";
-import { RegisterVehicleCommand } from "../../src/App/register-vehicle-command";
-import { RegisterVehicleCommandHandler } from "../../src/App/register-vehicle-command-handler";
-import { ParkVehicleCommand } from "../../src/App/park-vehicle-command";
-import { ParkVehicleCommandHandler } from "../../src/App/park-vehicle-command-handler";
+import { RegisterVehicleCommand } from "../../src/App/Commands/register-vehicle-command";
+import { RegisterVehicleCommandHandler } from "../../src/App/Commands/register-vehicle-command-handler";
+import { ParkVehicleCommand } from "../../src/App/Commands/park-vehicle-command";
+import { ParkVehicleCommandHandler } from "../../src/App/Commands/park-vehicle-command-handler";
+import { GetFleetQuery } from "../../src/App/Queries/get-fleet-query";
+import { GetFleetQueryHandler } from "../../src/App/Queries/get-fleet-query-handler";
+import { GetVehicleLocationQuery } from "../../src/App/Queries/get-vehicle-location-query";
+import { GetVehicleLocationQueryHandler } from "../../src/App/Queries/get-vehicle-location-query-handler";
 
 interface TestWorld {
   fleet: Fleet;
@@ -62,7 +66,8 @@ When("I try to register this vehicle into my fleet", function (this: TestWorld) 
 });
 
 Then("this vehicle should be part of my vehicle fleet", function (this: TestWorld) {
-  const fleet = this.fleetRepository.findById(this.fleet.fleetId);
+  const queryHandler = new GetFleetQueryHandler(this.fleetRepository);
+  const fleet = queryHandler.handle(new GetFleetQuery(this.fleet.fleetId));
   assert.ok(fleet.hasVehicle(this.vehicle));
 });
 
@@ -106,9 +111,14 @@ When("I try to park my vehicle at this location", function (this: TestWorld) {
 });
 
 Then("the known location of my vehicle should verify this location", function (this: TestWorld) {
-  const vehicle = this.vehicleRepository.findByPlateNumber(this.vehicle.plateNumber);
-  assert.ok(vehicle.location, "Vehicle should have a location");
-  assert.ok(vehicle.location.equals(this.location), "Location should match");
+  const queryHandler = new GetVehicleLocationQueryHandler(
+    this.fleetRepository,
+    this.vehicleRepository,
+  );
+  const location = queryHandler.handle(
+    new GetVehicleLocationQuery(this.fleet.fleetId, this.vehicle.plateNumber),
+  );
+  assert.ok(location.equals(this.location), "Location should match");
 });
 
 Then(
