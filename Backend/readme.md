@@ -1,5 +1,7 @@
 # Vehicle Fleet Parking Management
 
+[![Backend CI](https://github.com/attalbialami/fulll-test/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/attalbialami/fulll-test/actions/workflows/backend-ci.yml)
+
 > DDD/CQRS in TypeScript — FULLL Technical Test
 
 ## What is this?
